@@ -1,0 +1,41 @@
+/*
+Program Requirements: Find the length of the last word in a string
+(Done in C++)
+
+  My solution as of 09/25/23:
+    1) reverse the string 
+    2) use a function to delete leading whitespace
+    3) for-loop to append character values of last word onto string variable until whitespace is encountered
+    4) return length of string variable
+    Efficiency of my Program:
+    1) Runtime: 0ms (beats 100% of users)
+    2) Memory: 6.75 MB (beats 20.48% of users)
+    Notes: 
+    1) Speed is optimal, but too much memory wastage
+    2) unsure of the reason behind poor memory
+*/
+
+Code:
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+
+    std::reverse(s.begin(),s.end());
+
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
+        return !std::isspace(ch);
+    }));
+
+    std::string str2 = "";
+
+    for (char c : s){
+        if(isalpha(c)){
+            str2 += c;
+        } else{
+            break;
+        }
+    }
+    return str2.length();
+        
+    }
+};
